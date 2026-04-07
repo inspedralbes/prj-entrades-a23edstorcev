@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - backend
+      - realtime
+    networks:
+      - ticketing-network
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: ticketing
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - ticketing-network
+
+  redis:
+    image: redis:7.0-alpine
+    command: ["redis-server", "--notify-keyspace-events", "Ex"]
+    networks:
+      - ticketing-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: mysql
+      REDIS_HOST: redis
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - ticketing-network
+
+  realtime:
+    build:
+      context: ./realtime
+      dockerfile: Dockerfile
+    environment:
+      REDIS_HOST: redis
+    volumes:
+      - ./realtime:/usr/src/app
+    deploy:
+      replicas: 3
+    depends_on:
+      - redis
+    networks:
+      - ticketing-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/usr/src/app
+    networks:
+      - ticketing-network
+
+networks:
+  ticketing-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
