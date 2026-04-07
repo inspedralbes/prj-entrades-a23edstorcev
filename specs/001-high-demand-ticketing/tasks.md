@@ -31,7 +31,7 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 **Purpose**: Core logic and infrastructure required for all user stories.
 
 - [x] T003 (Branch: feature/db-schema) Create DB schema and models (users, seats, sales, outbox_events) in backend/database/migrations/ and backend/app/Models/
-- [ ] T004 (Branch: feature/laravel-core-api) Implement JWT authentication and base seat listing endpoints in backend/app/Http/Controllers/
+- [x] T004 (Branch: feature/laravel-core-api) Implement JWT authentication and base seat listing endpoints in backend/app/Http/Controllers/
 - [ ] T005 [P] (Branch: feature/node-socket-cluster) Configure Node.js Socket.IO server with @socket.io/redis-adapter in realtime/index.js
 - [ ] T006 [P] (Branch: feature/node-middlewares) Implement JWT validation and Rate Limiting (Token Bucket) middleware in realtime/middleware/
 
