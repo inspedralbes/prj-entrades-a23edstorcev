@@ -22,7 +22,7 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 **Purpose**: Initialize environment and basic documentation structure.
 
 - [x] T001 [P] (Branch: chore/docker-setup) Configure Docker Compose with Nginx (ip_hash), MySQL, Redis (Ex events), Laravel, and Node.js in /docker-compose.yml
-- [ ] T002 [P] (Branch: chore/init-docs) Initialize repositories for Laravel, Node.js, and Vue and create /docs/prompts_log.md
+- [x] T002 [P] (Branch: chore/init-docs) Initialize repositories for Laravel, Node.js, and Vue and create /docs/prompts_log.md
 
 ---
 
