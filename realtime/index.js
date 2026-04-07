@@ -46,9 +46,14 @@ io.use((socket, next) => {
 // Middleware for Rate Limiting
 io.use(rateLimiter);
 
+const seatHandler = require('./sockets/SeatHandler');
+
 io.on('connection', (socket) => {
   console.log('User connected:', socket.user.sub);
   
+  // Register handlers
+  seatHandler(io, socket);
+
   socket.on('disconnect', () => {
     console.log('User disconnected:', socket.user.sub);
   });
