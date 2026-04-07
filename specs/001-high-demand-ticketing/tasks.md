@@ -46,7 +46,7 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 **Independent Test**: Verify seat becomes locked in Redis and status reflects on the requester's screen.
 
 - [x] T007 [US1] (Branch: feature/node-atomic-locks) Implement atomic locking logic using Redis Lua scripts in realtime/services/LockingService.js
-- [ ] T008 [US1] (Branch: feature/vue-layout-map) Create base Vue.js layout and static seat map component in frontend/src/components/SeatMap.vue
+- [x] T008 [US1] (Branch: feature/vue-layout-map) Create base Vue.js layout and static seat map component in frontend/src/components/SeatMap.vue
 - [ ] T009 [US1] (Branch: feature/vue-reactivity) Integrate Socket.IO client and implementation of selection logic in frontend/src/components/SeatMap.vue
 
 ---
