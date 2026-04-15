@@ -1,0 +1,19 @@
+{
+  "name": "ticketing-realtime",
+  "version": "1.0.0",
+  "description": "Real-time socket server for ticketing",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@socket.io/redis-adapter": "^8.2.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "redis": "^4.6.10",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

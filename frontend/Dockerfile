@@ -1,0 +1,14 @@
+FROM node:20-alpine
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 5173
+
+# Comanda per a Hot Reload amb Vite
+CMD [ "npm", "run", "dev", "--", "--host" ]

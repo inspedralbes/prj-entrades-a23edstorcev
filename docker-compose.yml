@@ -1,0 +1,92 @@
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_DATABASE: ticketing
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - ticketing-network
+
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--notify-keyspace-events", "Ex" ]
+    networks:
+      - ticketing-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      REDIS_HOST: redis
+      DB_PORT: 3306
+    volumes:
+      - ./backend:/var/www/html
+      - /var/www/html/vendor
+    depends_on:
+      - mysql
+      - redis
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/events" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - ticketing-network
+
+  realtime:
+    build:
+      context: ./realtime
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      REDIS_HOST: redis
+      JWT_SECRET: UnQO1Kg07z6wn4QcMxO5FpoIq8Xf0thw5AZRqYrYvD17QEhpc9ltVZLfwA3xGEX9
+    volumes:
+      - ./realtime:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npx nodemon index.js
+    depends_on:
+      redis:
+        condition: service_started
+      backend:
+        condition: service_healthy
+    networks:
+      - ticketing-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - ticketing-network
+    depends_on:
+      backend:
+        condition: service_healthy
+
+networks:
+  ticketing-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local

@@ -5,7 +5,7 @@ backend/*.cache
 backend/*.env
 backend/storage/*.key
 backend/public/storage
-backend/public/hot 
+backend/public/hot
 backend/storage/framework/cache/data/*
 backend/storage/framework/sessions/*
 backend/storage/framework/testing/*
