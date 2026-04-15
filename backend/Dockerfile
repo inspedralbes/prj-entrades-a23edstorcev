@@ -41,5 +41,5 @@ RUN php artisan storage:link || true
 # Expose port 8000
 EXPOSE 8000
 
-# Start Laravel server with auto-migrate
-CMD sh -c "sleep 15 && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000"
+# Start Laravel server with auto-migrate and seed
+CMD sh -c "sleep 15 && php artisan migrate --force --seed && php artisan serve --host=0.0.0.0 --port=8000"
