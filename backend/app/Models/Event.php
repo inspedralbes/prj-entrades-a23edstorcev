@@ -9,9 +9,13 @@ class Event extends Model
 {
     use HasUuids;
 
-    protected $fillable = ['name', 'description', 'date', 'location'];
+    protected $fillable = ['name', 'description', 'date', 'dates', 'location', 'image_path'];
     public $incrementing = false;
     protected $keyType = 'string';
+
+    protected $casts = [
+        'dates' => 'array',
+    ];
 
     public function seatCategories()
     {

@@ -1,0 +1,38 @@
+# PHP (Backend)
+backend/vendor/
+backend/storage/*.log
+backend/storage/framework/cache/data/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*.php
+backend/public/storage
+backend/.env*
+backend/tests/
+
+# Node.js (Realtime / Frontend)
+node_modules/
+realtime/node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+frontend/.env*
+realtime/.env*
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+docs/
+specs/
+
+# Universal
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+.gemini/
+.specify/
+README.md
+LICENSE
+GEMINI.md

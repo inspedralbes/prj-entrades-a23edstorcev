@@ -1,0 +1,19 @@
+services:
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: global-proxy
+    restart: unless-stopped
+    ports:
+      - '80:80'   # Entrada web normal
+      - '81:81'   # Panel de control (Entra por aquí para configurar)
+      - '443:443' # Entrada segura HTTPS
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    name: nginx-proxy
+    driver: bridge

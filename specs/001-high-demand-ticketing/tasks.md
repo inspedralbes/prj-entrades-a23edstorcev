@@ -47,7 +47,7 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 
 - [x] T007 [US1] (Branch: feature/node-atomic-locks) Implement atomic locking logic using Redis Lua scripts in realtime/services/LockingService.js
 - [x] T008 [US1] (Branch: feature/vue-layout-map) Create base Vue.js layout and static seat map component in frontend/src/components/SeatMap.vue
-- [ ] T009 [US1] (Branch: feature/vue-reactivity) Integrate Socket.IO client and implementation of selection logic in frontend/src/components/SeatMap.vue
+- [x] T009 [US1] (Branch: feature/vue-reactivity) Integrate Socket.IO client and implementation of selection logic in frontend/src/components/SeatMap.vue
 
 ---
 
@@ -57,8 +57,8 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 
 **Independent Test**: Verify that User A's selection reflects on User B's screen within 200ms.
 
-- [ ] T010 [US2] (Branch: feature/vue-reactivity) Implement real-time status updates and color coding in frontend/src/components/SeatMap.vue
-- [ ] T011 [US2] (Branch: feature/vue-reactivity) Implement 10-minute countdown timer and TTL check (Anti-F5) in frontend/src/components/SeatMap.vue
+- [x] T010 [US2] (Branch: feature/vue-reactivity) Implement real-time status updates and color coding in frontend/src/components/SeatMap.vue
+- [x] T011 [US2] (Branch: feature/vue-reactivity) Implement 10-minute countdown timer and TTL check (Anti-F5) in frontend/src/components/SeatMap.vue
 
 ---
 
@@ -66,8 +66,8 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 
 **Goal**: Convert a temporary lock into a permanent sale via Transactional Outbox.
 
-- [ ] T012 [US3] (Branch: feature/laravel-payment-webhook) Create payment processing endpoint with SQL transaction in backend/app/Http/Controllers/PurchaseController.php
-- [ ] T013 [US3] (Branch: feature/laravel-outbox-worker) Implement Outbox Worker to publish DB events to Redis Pub/Sub in backend/app/Console/Commands/ProcessOutbox.php
+- [x] T012 [US3] (Branch: feature/laravel-payment-webhook) Create payment processing endpoint with SQL transaction in backend/app/Http/Controllers/PurchaseController.php
+- [x] T013 [US3] (Branch: feature/laravel-outbox-worker) Implement Outbox Worker to publish DB events to Redis Pub/Sub in backend/app/Console/Commands/ProcessOutbox.php
 
 ---
 
@@ -75,7 +75,7 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 
 **Goal**: Automatically free inventory after 10 minutes of inactivity.
 
-- [ ] T014 [US4] (Branch: feature/node-keyspace-listeners) Implement Redis keyspace notification listener (Ex event) in realtime/services/ExpiryHandler.js
+- [x] T014 [US4] (Branch: feature/node-keyspace-listeners) Implement Redis keyspace notification listener (Ex event) in realtime/services/ExpiryHandler.js
 
 ---
 
@@ -83,7 +83,7 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 
 **Goal**: Real-time monitoring of sales, locks, and connected users.
 
-- [ ] T015 [US5] (Branch: feature/admin-live-panel) Implement metrics aggregation and live admin dashboard view in frontend/src/views/AdminDashboard.vue
+- [x] T015 [US5] (Branch: feature/admin-live-panel) Implement metrics aggregation and live admin dashboard view in frontend/src/views/AdminDashboard.vue
 
 ---
 
@@ -91,8 +91,8 @@ description: "Task list for High-Demand Ticketing Platform implementation with b
 
 **Purpose**: Resilience, stress testing, and final documentation.
 
-- [ ] T016 (Branch: feature/vue-graceful-degradation) Implement UI "Reconnectant..." overlay on socket disconnect in frontend/src/services/socket.js
-- [ ] T017 (Branch: test/qa-validation) Create k6 stress tests and Cypress E2E tests in tests/stress/ and tests/e2e/
+- [x] T016 (Branch: feature/vue-graceful-degradation) Implement UI "Reconnectant..." overlay on socket disconnect in frontend/src/services/socket.js
+- [x] T017 (Branch: test/qa-validation) Create k6 stress tests and Cypress E2E tests in tests/stress/ and tests/e2e/
 
 ---
 

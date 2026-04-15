@@ -1,0 +1,41 @@
+# PHP
+backend/vendor/
+backend/*.log
+backend/*.cache
+backend/*.env
+backend/storage/*.key
+backend/public/storage
+backend/public/hot
+backend/storage/framework/cache/data/*
+backend/storage/framework/sessions/*
+backend/storage/framework/testing/*
+backend/storage/framework/views/*.php
+backend/storage/logs/*.log
+backend/.phpunit.result.cache
+backend/auth.json
+
+# Node.js
+node_modules/
+realtime/node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+build/
+*.log
+.env*
+realtime/.env*
+frontend/.env*
+
+# Universal
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+.gemini/
+.specify/memory/
+
+# Docker
+.docker/
+docker-compose.override.yml

@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: High-Demand Ticketing API
+  description: REST API for interactive seat selection, locking, and purchase.
+  version: 1.0.0
+
+servers:
+  - url: https://api.ticketing.com/v1
+
+paths:
+  /seats:
+    get:
+      summary: List all seats and their current status.
+      description: Returns a complete map of seats. For performance, this may be served from a Redis cache.
+      responses:
+        '200':
+          description: A list of seats.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Seat'
+
+  /seats/{id}/lock:
+    post:
+      summary: Attempt to reserve a seat.
+      description: Atomic reservation for 10 minutes. Returns 409 if already locked or sold.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '201':
+          description: Seat successfully locked.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lock'
+        '409':
+          description: Conflict. Seat is already locked or sold.
+        '404':
+          description: Seat not found.
+
+  /seats/{id}/purchase:
+    post:
+      summary: Finalize purchase.
+      description: Converts a 'LOCKED' seat to 'SOLD'. Requires a valid lock held by the requester.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transaction_id:
+                  type: string
+                  description: Reference from external payment provider.
+      responses:
+        '200':
+          description: Purchase confirmed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+        '403':
+          description: Forbidden. User does not hold the lock for this seat or lock expired.
+        '400':
+          description: Invalid request.
+
+components:
+  schemas:
+    Seat:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        section:
+          type: string
+        row:
+          type: integer
+        number:
+          type: integer
+        status:
+          type: string
+          enum: [AVAILABLE, LOCKED, SOLD]
+        x:
+          type: number
+        y:
+          type: number
+        price:
+          type: number
+
+    Lock:
+      type: object
+      properties:
+        seat_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        expires_at:
+          type: string
+          format: date-time
+
+    Sale:
+      type: object
+      properties:
+        sale_id:
+          type: string
+          format: uuid
+        seat_id:
+          type: string
+          format: uuid
+        transaction_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time

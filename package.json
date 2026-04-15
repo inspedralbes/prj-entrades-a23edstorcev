@@ -1,0 +1,27 @@
+{
+  "name": "prj-entrades-a23edstorcev",
+  "version": "1.0.0",
+  "description": "Esquema mínim de carpetes pels projectes transversals",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inspedralbes/prj-entrades-a23edstorcev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inspedralbes/prj-entrades-a23edstorcev/issues"
+  },
+  "homepage": "https://github.com/inspedralbes/prj-entrades-a23edstorcev#readme",
+  "devDependencies": {
+    "cypress": "^15.13.1"
+  }
+}

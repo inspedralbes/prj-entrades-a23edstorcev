@@ -10,4 +10,5 @@ COPY . .
 
 EXPOSE 5173
 
+# Comanda per a Hot Reload amb Vite
 CMD [ "npm", "run", "dev", "--", "--host" ]
