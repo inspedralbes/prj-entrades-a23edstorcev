@@ -17,7 +17,7 @@
             Els meus <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Tickets</span>
           </h2>
           <p class="text-on-surface-variant mt-2 text-xs max-w-sm opacity-70">
-            Llistat d'accessos confirmats per a la xarxa Neon Curator.
+            Llistat d'accessos confirmats per a la xarxa TicketX.
           </p>
         </div>
         <div class="flex items-center gap-4">

@@ -75,7 +75,7 @@ const form = reactive({
 });
 
 const formFields = [
-  { id: 'email', model: 'email', type: 'email', label: 'Identificador (Email)', placeholder: 'usuari@neon.com' },
+  { id: 'email', model: 'email', type: 'email', label: 'Identificador (Email)', placeholder: 'usuari@ticketx.cat' },
   { id: 'password', model: 'password', type: 'password', label: 'Clau d\'Accés', placeholder: '••••••••' }
 ];
 

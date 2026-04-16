@@ -10,15 +10,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Restauramos el estilo original de creación de usuarios
-        User::factory()->create([
+        // Creación directa sin Factory (evita dependencia de Faker en producción)
+        User::create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => Hash::make('password'),
         ]);
 
-        User::factory()->create([
-            'name' => 'Admin Neon',
+        User::create([
+            'name' => 'Admin TicketX',
             'email' => 'admin@admin.com',
             'password' => Hash::make('password'),
             'is_admin' => true,

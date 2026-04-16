@@ -72,7 +72,7 @@ const form = reactive({
 
 const formFields = [
   { id: 'name', model: 'name', type: 'text', label: 'Nom Complet', placeholder: 'El teu nom' },
-  { id: 'email', model: 'email', type: 'email', label: 'Correu Electrònic', placeholder: 'usuari@neon.com' },
+  { id: 'email', model: 'email', type: 'email', label: 'Correu Electrònic', placeholder: 'usuari@ticketx.cat' },
   { id: 'password', model: 'password', type: 'password', label: 'Contrasenya', placeholder: '••••••••' },
   { id: 'password_confirmation', model: 'password_confirmation', type: 'password', label: 'Confirmar Contrasenya', placeholder: '••••••••' }
 ];

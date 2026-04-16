@@ -17,7 +17,7 @@ class EventSeeder extends Seeder
                 'name' => 'CYBERPUNK RHYTHMS 2026',
                 'description' => 'La convergència digital definitiva. Tecnologia, so i visió en una experiència multisensorial sense precedents.',
                 'date' => '2026-06-15 21:00:00',
-                'location' => 'Neon Arena, Barcelona',
+                'location' => 'Palau Sant Jordi, Barcelona',
                 'categories' => [
                     ['name' => 'VIP Front Stage', 'price' => 120.00, 'rows' => 5, 'cols' => 10],
                     ['name' => 'General Floor', 'price' => 65.00, 'rows' => 10, 'cols' => 15],

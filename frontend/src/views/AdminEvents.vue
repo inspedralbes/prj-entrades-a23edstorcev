@@ -79,7 +79,7 @@
                   </div>
                   <div class="space-y-2">
                     <label class="text-[10px] font-black uppercase tracking-widest text-secondary ml-2">Ubicació</label>
-                    <input v-model="formData.location" required type="text" class="w-full bg-background border border-outline-variant/20 rounded-2xl px-6 py-4 text-on-surface focus:border-primary transition-all outline-none" placeholder="Ex: Neon Arena, Barcelona">
+                    <input v-model="formData.location" required type="text" class="w-full bg-background border border-outline-variant/20 rounded-2xl px-6 py-4 text-on-surface focus:border-primary transition-all outline-none" placeholder="Ex: Palau Sant Jordi, Barcelona">
                   </div>
                 </div>
 
