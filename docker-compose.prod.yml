@@ -15,8 +15,10 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_DATABASE: ticketing
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_DATABASE:-ticketing}
+      MYSQL_USER: ${DB_USERNAME:-ticketuser}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-ticketpass}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpass}
     networks:
       - ticketing-network
 
@@ -31,12 +33,20 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     environment:
+      DB_CONNECTION: mysql
       DB_HOST: mysql
+      DB_PORT: 3306
       REDIS_HOST: redis
     # En producció NO hi ha volums de codi
     depends_on:
       - mysql
       - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/events"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     networks:
       - ticketing-network
 
