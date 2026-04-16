@@ -33,9 +33,6 @@ services:
       DB_CONNECTION: mysql
       DB_HOST: mysql
       DB_PORT: 3306
-      DB_DATABASE: ${DB_DATABASE:-ticketing}
-      DB_USERNAME: ${DB_USERNAME:-ticketuser}
-      DB_PASSWORD: ${DB_PASSWORD:-ticketpass}
       REDIS_HOST: redis
     volumes:
       - ./backend:/var/www/html
