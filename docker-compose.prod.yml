@@ -24,7 +24,7 @@ services:
 
   redis:
     image: redis:7.0-alpine
-    command: ["redis-server", "--notify-keyspace-events", "Ex"]
+    command: [ "redis-server", "--notify-keyspace-events", "Ex" ]
     networks:
       - ticketing-network
 
@@ -46,7 +46,7 @@ services:
       - mysql
       - redis
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/events"]
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/events" ]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -78,5 +78,5 @@ services:
 networks:
   ticketing-network:
     driver: bridge
-  nginx-proxy:   
+  nginx-proxy:
     external: true
