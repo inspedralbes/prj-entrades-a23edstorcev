@@ -32,8 +32,8 @@ COPY . .
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
-# Cargar entorno de producción
-RUN cp .env.example .env || true
+# Cargar entorno de producción (solo si no existe .env)
+RUN [ ! -f .env ] && cp .env.example .env || true
 
 # Create storage link within container
 RUN php artisan storage:link || true
