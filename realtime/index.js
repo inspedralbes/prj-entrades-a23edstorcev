@@ -34,6 +34,12 @@ const queueService = require('./services/QueueService');
 app.use(express.json());
 app.use(require('cors')());
 
+// Logging middleware for HTTP requests
+app.use((req, res, next) => {
+  console.log(`[HTTP] ${req.method} ${req.url}`);
+  next();
+});
+
 // HTTP Endpoints for Queue Status (Pre-Check)
 app.get('/rt-api/queue/status/:eventId', async (req, res) => {
   const { eventId } = req.params;
