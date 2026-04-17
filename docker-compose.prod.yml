@@ -39,6 +39,8 @@ services:
       DB_HOST: mysql
       REDIS_HOST: redis
       REDIS_PASSWORD: ""
+    volumes:
+      - storage_data:/var/www/html/storage
     depends_on:
       - mysql
       - redis
@@ -91,3 +93,7 @@ networks:
     driver: bridge
   nginx-proxy:
     external: true
+
+volumes:
+  mysql_data:
+  storage_data:

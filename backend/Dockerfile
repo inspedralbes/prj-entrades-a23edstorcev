@@ -38,6 +38,10 @@ RUN [ ! -f .env ] && cp .env.example .env || true
 # Create storage link within container
 RUN php artisan storage:link || true
 
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
+    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 # Expose port 8000
 EXPOSE 8000
 
