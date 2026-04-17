@@ -35,22 +35,13 @@ services:
     env_file:
       - .env
     environment:
-      DB_CONNECTION: mysql
+      # S'hereta tot del .env, només sobrescribim hosts de xarxa interna de Docker
       DB_HOST: mysql
-      DB_PORT: 3306
       REDIS_HOST: redis
-      REDIS_CLIENT: phpredis
-      JWT_SECRET: RBFyraVNL1Ovmwm8jtcO4sMnTB4RzTJpis3s6Q0MCjPQ9ScSlYdjNCko2zaz9tNo
-    # En producció NO hi ha volums de codi
     depends_on:
       - mysql
       - redis
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/events" ]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-      start_period: 30s
+    # ... healthcheck ...
     networks:
       - ticketing-network
 
@@ -61,11 +52,8 @@ services:
     env_file:
       - .env
     environment:
-      DB_CONNECTION: mysql
       DB_HOST: mysql
-      DB_PORT: 3306
       REDIS_HOST: redis
-      REDIS_CLIENT: phpredis
     command: sh -c "sleep 15 && php artisan outbox:process --realtime"
     depends_on:
       - mysql
