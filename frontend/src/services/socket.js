@@ -8,7 +8,15 @@ export const isConnected = ref(false);
 const socket = io(URL, {
   autoConnect: false,
   auth: {
-    token: localStorage.getItem('token')
+    token: null // Es carregarà abans de connectar
+  }
+});
+
+// Interceptor per actualitzar el token abans de connectar
+socket.on('connect_error', (err) => {
+  if (err.message === 'Authentication error: No token') {
+    socket.auth.token = localStorage.getItem('token');
+    socket.connect();
   }
 });
 
