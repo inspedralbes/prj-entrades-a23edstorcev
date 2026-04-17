@@ -7,17 +7,20 @@ export const isConnected = ref(false);
 
 const socket = io(URL, {
   autoConnect: false,
-  auth: {
-    token: null // Es carregarà abans de connectar
+  auth: (cb) => {
+    const token = localStorage.getItem('token');
+    console.log('Socket Attempting Connection with token:', token ? 'EXISTS' : 'MISSING');
+    cb({ token });
   }
 });
 
-// Interceptor per actualitzar el token abans de connectar
 socket.on('connect_error', (err) => {
+  console.error('Socket Connection Error Details:', err);
   if (err.message === 'Authentication error: No token') {
-    socket.auth.token = localStorage.getItem('token');
+    // Reintentar una vegada si el token no s'ha carregat bé
     socket.connect();
   }
+  isConnected.value = false;
 });
 
 socket.on('connect', () => {

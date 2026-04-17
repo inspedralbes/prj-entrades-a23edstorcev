@@ -87,6 +87,7 @@ app.get('/rt-api/map-state/:eventId', async (req, res) => {
 // Middleware for JWT validation
 io.use((socket, next) => {
   const token = socket.handshake.auth.token;
+  console.log('Socket Handshake Auth:', JSON.stringify(socket.handshake.auth));
   if (!token) {
     console.error('Socket Connection Attempt: No token provided');
     return next(new Error('Authentication error: No token'));
