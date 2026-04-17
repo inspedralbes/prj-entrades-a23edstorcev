@@ -38,6 +38,7 @@ services:
       # S'hereta tot del .env, només sobrescribim hosts de xarxa interna de Docker
       DB_HOST: mysql
       REDIS_HOST: redis
+      REDIS_PASSWORD: ""
     depends_on:
       - mysql
       - redis
@@ -54,6 +55,7 @@ services:
     environment:
       DB_HOST: mysql
       REDIS_HOST: redis
+      REDIS_PASSWORD: ""
     command: sh -c "sleep 20 && php artisan outbox:process --realtime"
     depends_on:
       - mysql
