@@ -69,6 +69,11 @@ class SeatController extends Controller
             $liveState = json_decode($response->getBody()->getContents(), true);
 
             foreach ($seats as $seat) {
+                // Si el seient ja està venut a la DB, ignorem qualsevol bloqueig temporal de Redis
+                if ($seat->status === 'SOLD') {
+                    continue;
+                }
+
                 if (isset($liveState[$seat->id])) {
                     $state = json_decode($liveState[$seat->id], true);
                     $seat->status = $state['status'];
