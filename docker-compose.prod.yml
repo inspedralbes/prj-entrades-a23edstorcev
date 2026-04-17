@@ -83,7 +83,7 @@ services:
       REDIS_HOST: redis
       JWT_SECRET: RBFyraVNL1Ovmwm8jtcO4sMnTB4RzTJpis3s6Q0MCjPQ9ScSlYdjNCko2zaz9tNo
     deploy:
-      replicas: 3 # Alta disponibilitat real
+      replicas: 1
     depends_on:
       - redis
     networks:

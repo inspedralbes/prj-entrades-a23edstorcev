@@ -133,6 +133,8 @@ const handlePayment = async () => {
     });
     
     localStorage.removeItem('selected_seats');
+    selectedSeats.value = []; // Clear local ref too
+    
     alert('Compra realitzada amb èxit!');
     router.push('/entrades');
   } catch (err) {

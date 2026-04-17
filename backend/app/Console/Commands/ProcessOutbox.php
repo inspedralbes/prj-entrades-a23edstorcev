@@ -45,16 +45,20 @@ class ProcessOutbox extends Command
 
             foreach ($events as $event) {
                 try {
-                    // Publish to Redis channel 'seat_updates'
-                    Redis::publish('seat_updates', json_encode([
+                    $JSON_PAYLOAD = json_encode([
                         'type' => $event->event_type,
                         'payload' => $event->payload
-                    ]));
+                    ]);
+                    
+                    $this->info("Publishing to Redis: " . $JSON_PAYLOAD);
+                    
+                    // Publish to Redis channel 'seat_updates'
+                    Redis::publish('seat_updates', $JSON_PAYLOAD);
 
                     $event->update(['processed_at' => now()]);
                     $this->line("Processed: {$event->event_type} (ID: {$event->id})");
                 } catch (\Exception $e) {
-                    $this->error("Failed to process event {$event->id}: " . $e->getMessage());
+                    $this->error("CRITICAL ERROR in Outbox: " . $e->getMessage());
                 }
             }
         } while ($this->option('realtime'));
