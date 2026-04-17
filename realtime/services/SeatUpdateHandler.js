@@ -29,6 +29,10 @@ module.exports = (io) => {
             ts: payload.ts
           }));
           
+          // NETEJA CRÍTICA: Borrar la clau de lock per evitar que segueixi sortint com a seleccionat
+          const lockKey = `locks:${eventId}:${payload.id}`;
+          await pubClient.del(lockKey);
+          
           await pubClient.disconnect();
 
           // Broadcast to all Socket.IO clients

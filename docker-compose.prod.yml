@@ -54,6 +54,25 @@ services:
     networks:
       - ticketing-network
 
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      REDIS_HOST: redis
+      REDIS_CLIENT: phpredis
+    command: php artisan outbox:process --realtime
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - ticketing-network
+
   realtime:
     build:
       context: ./realtime
